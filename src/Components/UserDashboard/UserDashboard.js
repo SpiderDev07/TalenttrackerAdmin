@@ -51,7 +51,21 @@ const UserDashboard = () => {
         
     }
     const thismonth=()=>{
+        axios.get("http://162.240.67.205:5000/api/thisMonthUser").then((res)=>{
+            setgetdata(res.data);
+
+         })
+        
+    }
+    const lastmonth=()=>{
         axios.get("http://162.240.67.205:5000/api/lastMonthUser").then((res)=>{
+            setgetdata(res.data);
+
+         })
+        
+    }
+    const lastyear=()=>{
+        axios.get("http://162.240.67.205:5000/api/lastYearUser").then((res)=>{
             setgetdata(res.data);
 
          })
@@ -123,9 +137,9 @@ const UserDashboard = () => {
                 <Button variant='outline-secondary'  className='mx-2' onClick={fetchPost}>Today</Button>
                 <Button variant='outline-secondary' className='mx-2'onClick={thisweek}>This Week</Button>
                 <Button variant='outline-secondary'  className='mx-2'onClick={thismonth}>This Month</Button>
-                <Button variant='outline-secondary'  className='mx-2'>Last Month</Button>
+                <Button variant='outline-secondary'  className='mx-2'onClick={lastmonth}>Last Month</Button>
                 <Button variant='outline-secondary'  className='mx-2'>Last Quarter</Button>
-                <Button variant='outline-secondary'  className='mx-2'>Last Year</Button>
+                <Button variant='outline-secondary'  className='mx-2'onClick={lastyear}>Last Year</Button>
             </div>
             <Form>
             <Row>

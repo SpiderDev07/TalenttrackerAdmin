@@ -5,11 +5,11 @@ import { Container, Row, Col,Form , Button, InputGroup,FormControl,Dropdown} fro
 import { ToastContainer  } from 'react-toastify';
 import axios from 'axios'
 // import Select from 'react-select'
-// import {Link} from 'react-router-dom'
+ import {useNavigate} from 'react-router-dom'
 
 import "./Dashboard.css";
 const Dashboard = () => {
-
+  const navigate=useNavigate();
   const [getdata,setgetdata] = useState([]);
 const [getCode, setCode]=useState([])
   useEffect(()=>{
@@ -60,6 +60,138 @@ const code=Math.floor(Math.random()*90000000)+10000000;
  
   const [selected8, Setselected8]=useState(false)
   const handleselected8 = () => Setselected8(!selected8)
+
+
+  const submithandleform = (e) =>{
+    e.preventDefault();
+    const defaultemail=user.firstname+"."+user.lastname+"@talenttracker.in";
+    axios.post('http://162.240.67.205:5000/api/users',{
+      
+      firstname:user.firstname,
+      lastname:user.lastname,
+      email:user.email,
+      password:user.password,
+      gender:user.gender,
+      cLocation:user.cLocation,
+      countryCode:user.countryCode,
+      number:user.number,
+      Aemail:defaultemail
+     })
+     .then((response) => {
+      if (response && response.status === 200) {
+      
+        console.log(response.data)
+        if (response.data) {
+         
+          const data = response.data;
+          console.log(data)
+          alert("sucessfully inserted")
+      
+    navigate('/');
+        
+        }
+      }
+    })
+    .catch((error) => {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.status
+      ) {
+        console.log(error.response.data.status);
+       
+           alert("Email id allready exists")
+      }
+    });
+    
+    
+    
+    
+    
+    
+        
+      } 
+    
+    
+      const [user, setUser]=useState({
+        clientId:"",
+        JDnumber:"",
+      
+        company_name:"",
+        
+      listofCompany:"",
+      linkendInUrl:"",
+      client_signup_rate:"",
+      replacement_priod:"",
+      
+      payment_terms:"",
+      companyadress:"",
+      industry:"",
+        
+        companyType:"",
+        companySize:"",
+        ClientSpoc1Name:"",
+        ClientSpoc2Name:"",
+        ClientSpoc3Name:"",
+        ClientSpoc1Email:"",
+        ClientSpoc2Email:"",
+        ClientSpoc3Email:"",
+        ClientSpoc1MobileNumber:"",
+        ClientSpoc2MobileNumber:"",
+        ClientSpoc3MobileNumber:"",
+        ClientSpoc1Designation:"",
+        ClientSpoc2Designation:"",
+        ClientSpoc3Designation:"",
+        mobiledisclosed:"",
+        Clientcompanywebsite:"",
+        companynamedisclosed:"",
+        UserCategory:"",
+        ourdatabaseUsed:"",
+      
+        exclusivity:"",
+        CVqualcheckreqbyAdmin:"",
+        prioritytag:"",
+        JDuploadDate:"",
+        JDuploadtime:"",
+        JDdes:"",
+        JDtitle:"",
+        SalaryBudget:"",
+        education:"",
+        totalexperience:"",
+        JDlocation:"",
+        roundsofinterview:"",
+        noticeperiodprefgivenbyclient:"",
+        minnumcvsubm:"",
+        allowonecandidatesubmbyuser:"",
+        noofworkingdays:"",
+        status:"",
+        feedback:"",
+        rework:"",
+        noofvacancies:"",
+        clientcoordtobedoneby:"",
+        AssuredDeliveryReqByClient:"",
+        remarks:"",
+        clientEmailListTo:"",
+        clientEmailListCC:"",
+        JDaudio:"",
+        percentPayoutForIndIfusetalenttrackerdatabase:"",
+        percentPayoutForconsulIfusetalenttrackerdatabase:"",
+        percentPayoutForIndIfuseownportal:"",
+        percentPayoutForconsulIfuseownportal:"",
+        absSayForindIfusetalenttrackerdatabase:"",
+        absPayForconsulIfusetalenttrackerdatabase:"",
+        abspayForIndIfuseownportal:"",        abspayforconsulifuseownportal:"",
+        preferredcompanyList:"",
+         companyadress:"",
+        
+      
+      })
+      function handle(e){
+        const newuser={...user}
+        newuser[e.target.id]=e.target.value
+      setUser(newuser)
+      }
+    
   
   // const options = [
   //   { value: 'Services', label: 'Services' },

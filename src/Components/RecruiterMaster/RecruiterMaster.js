@@ -250,7 +250,7 @@ return(<>
                     <td>{user.WIInd_Or_Consul}</td>
                     <td>{user.number}</td>
                     <td>{user.cLocation}</td>
-                    <td>n/a</td>
+                    <td>{user.WIpref}</td>
                     <td onClick={()=>handleShow1(user.userId)} style={{color:'orange', textDecoration:'underline'}}><i class="fa fa-address-book" aria-hidden="true"></i></td>
                     <td onClick={()=>workinformation(user.userId)} style={{color:'red', textDecoration:'underline'}}><i class="fa fa-briefcase" aria-hidden="true"></i></td>
                     <td onClick={()=>backdetail(user.userId)} style={{color:'green', textDecoration:'underline'}}><i class="fa fa-home" aria-hidden="true"></i></td>
